@@ -18,10 +18,15 @@ def get_all_sentences(file_name):
         line = line.replace("\n","")
         sentence_list.append(line)
         line = file_header.readline()
-    print(sentence_list)
-corpus = get_all_sentences("manually_selected_clean.txt")
+    return sentence_list
+
+embedding_sentences_file = "manually_selected_clean.txt"
+
+corpus = get_all_sentences(embedding_sentences_file)
+
 corpus_embeddings = embedder.encode(corpus)
 
+save_embedding(embedding_sentences_file,corpus_embeddings)
 # Perform kmean clustering
 num_clusters = 1
 clustering_model = KMeans(n_clusters=num_clusters)
