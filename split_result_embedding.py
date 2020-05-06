@@ -44,4 +44,16 @@ def get_score_list(score_file,score_type = "consin"):
 
 scores_list = get_score_list("texts_clean2_result_scores.txt")
 
-print(scores_list[:][0])
+def get_modelx_score_list(scores_list,x=0):
+    score_list = []
+
+    for scores in scores_list:
+        score_list.append(scores[x])
+
+    return score_list
+
+import numpy as np
+
+score_list1 = get_modelx_score_list(scores_list,0)
+
+print(np.argsort(score_list1))
