@@ -1,7 +1,7 @@
 from sentence_transformers import SentenceTransformer
 from sklearn.cluster import KMeans
 import time
-from sklearn.metrics.pairwise import cosine_similarity
+from sklearn.metrics.pairwise import cosine_similarity,euclidean_distances,cosine_distances
 #embedder = SentenceTransformer('bert-base-nli-mean-tokens')
 embedder = SentenceTransformer('bert-large-nli-mean-tokens')
 #embedder = SentenceTransformer('roberta-base-nli-mean-tokens')
@@ -96,6 +96,8 @@ while line:
     embedded_line = embedder.encode(line_list)
     
     print(cosine_similarity(embedded_line,centers))
+    print(euclidean_distances(embedded_line,centers))
+    print(cosine_distances(embedded_line,centers))
     time.sleep(1)
     line = unknown_sentenses_file_header.readline()
     
