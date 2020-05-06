@@ -31,6 +31,7 @@ def get_score_list(score_file,score_type = "consin"):
         if count%2==mod_end:
             scores = line.split(" ")
             for score in scores:
+                print(score)
                 consin_scores.append(float(score))
             scores_list.append(consin_scores)
         
