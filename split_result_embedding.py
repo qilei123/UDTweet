@@ -14,4 +14,28 @@ def split_result_embedding(src_file):
         count+=1
         line = src_file_header.readline()
 
-split_result_embedding("texts_clean2_result.txt")
+#split_result_embedding("texts_clean2_result.txt")
+def get_score_list(score_file,score_type = "consin"):
+    mod_end = 0
+    if score_type=="consin":
+        mod_end = 0
+    elif score_type =="eula":
+        mod_end = 1
+    score_file_header = open(score_file)
+    
+    line = score_file_header.readline()
+    scores_list = []
+    count=0
+    while line:
+        consin_scores = []
+        if count%2==mod_end:
+            scores = line.split(" ")
+            for score in scores:
+                consin_scores.append(float(score))
+            scores_list.append(consin_scores)
+        
+        line = score_file_header.readline()
+
+    return scores_list
+
+scores_list = get_score_list("texts_clean2_result_scores.txt")
