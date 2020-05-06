@@ -43,6 +43,7 @@ def clean_text(file_dir):
         dst_file_header.write(clean_string)
         line = src_file_header.readline()
     
+    
 clean_text("manually_selected.txt")
 
 clean_text("texts.txt")
