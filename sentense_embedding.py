@@ -1,6 +1,6 @@
 from sentence_transformers import SentenceTransformer
 from sklearn.cluster import KMeans
-
+import time
 #embedder = SentenceTransformer('bert-base-nli-mean-tokens')
 embedder = SentenceTransformer('bert-large-nli-mean-tokens')
 #embedder = SentenceTransformer('roberta-base-nli-mean-tokens')
@@ -56,7 +56,6 @@ embeddings_positives4 = embed(embedder,"positive_library/positive_tweets_and_pos
 
 #embeddings_unknowns = embed(embedder,"texts_clean.txt",False)
 
-
 num_clusters = 1
 
 clustering_model1 = KMeans(n_clusters=num_clusters)
@@ -78,3 +77,15 @@ clustering_model4 = KMeans(n_clusters=num_clusters)
 clustering_model4.fit(embeddings_positives4)
 print("The center of positive_tweets_and_positive_web is:")
 print(clustering_model4.cluster_centers_)
+
+unknown_sentenses_file = "text_clean2.txt"
+unknown_sentenses_file_header = open(unknown_sentenses_file)
+line = unknown_sentenses_file_header.readline()
+while line:
+    line = line.replace("\n","")
+    line_list = []
+    line_list.append(line)
+    embedded_line = embedder.encode(line_list)
+    print(embedded_line)
+    time.sleep(1)
+    

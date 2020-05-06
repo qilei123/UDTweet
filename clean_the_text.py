@@ -44,6 +44,18 @@ def clean_text(file_dir):
         line = src_file_header.readline()
     
     
-clean_text("manually_selected.txt")
+#clean_text("manually_selected.txt")
 
-clean_text("texts.txt")
+#clean_text("texts.txt")
+
+def clean2(file_name):
+    file_header = open(file_name)
+    dst_header = open(file_name.replace(".txt","2.txt"),"w")
+    line = file_header.readline()
+
+    while line:
+        if not (line=="\n" or line=="  \n"):
+            dst_header.write(line)
+        line = file_header.readline()
+
+clean2("texts_clean.txt")
