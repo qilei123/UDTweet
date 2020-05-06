@@ -8,7 +8,7 @@ embedder = SentenceTransformer('bert-large-nli-mean-tokens')
 #embedder = SentenceTransformer('distilbert-base-nli-mean-tokens')
 
 def save_embedding(file_name,embedding_list):
-    save_file_header = open(file_name.,"w")
+    save_file_header = open(file_name.replace(".txt","_embedding.txt"),"w")
 def get_all_sentences(file_name):
     file_header = open(file_name)
 
