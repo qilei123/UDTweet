@@ -49,13 +49,32 @@ def embed(embedder,src_file,will_save=False):
         save_embedding(src_file,corpus_embeddings)
     return corpus_embeddings
 
-embeddings_positives = embed(embedder,"selected_and_positive_tweets.txt",False)
+embeddings_positives1 = embed(embedder,"positive_library/selected.txt",True)
+embeddings_positives2 = embed(embedder,"positive_library/selected_and_positive_tweets.txt",True)
+embeddings_positives3 = embed(embedder,"positive_library/selected_and_positive_tweets_and_positive_web.txt",True)
+embeddings_positives4 = embed(embedder,"positive_library/positive_tweets_and_positive_web.txt",True)
 
-embeddings_unknowns = embed(embedder,"texts_clean.txt",False)
+#embeddings_unknowns = embed(embedder,"texts_clean.txt",False)
 
-# Perform kmean clustering
+
 num_clusters = 1
-clustering_model = KMeans(n_clusters=num_clusters)
-clustering_model.fit(embeddings_positives)
-print("cluster_center is:")
-print(clustering_model.cluster_centers_)
+
+clustering_model1 = KMeans(n_clusters=num_clusters)
+clustering_model1.fit(embeddings_positives1)
+print("The center of selected is:")
+print(clustering_model1.cluster_centers_)
+
+clustering_model2 = KMeans(n_clusters=num_clusters)
+clustering_model2.fit(embeddings_positives2)
+print("The center of selected_and_positive_tweets is:")
+print(clustering_model2.cluster_centers_)
+
+clustering_model3 = KMeans(n_clusters=num_clusters)
+clustering_model3.fit(embeddings_positives3)
+print("The center of selected_and_positive_tweets_and_positive_web is:")
+print(clustering_model3.cluster_centers_)
+
+clustering_model4 = KMeans(n_clusters=num_clusters)
+clustering_model4.fit(embeddings_positives4)
+print("The center of positive_tweets_and_positive_web is:")
+print(clustering_model4.cluster_centers_)
