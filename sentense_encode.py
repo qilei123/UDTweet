@@ -1,13 +1,14 @@
 from sentence_transformers import SentenceTransformer
 from sklearn.cluster import KMeans
 
-embedder = SentenceTransformer('bert-base-nli-mean-tokens')
+#embedder = SentenceTransformer('bert-base-nli-mean-tokens')
 embedder = SentenceTransformer('bert-large-nli-mean-tokens')
-embedder = SentenceTransformer('roberta-base-nli-mean-tokens')
-embedder = SentenceTransformer('roberta-large-nli-mean-tokens')
-embedder = SentenceTransformer('distilbert-base-nli-mean-tokens')
+#embedder = SentenceTransformer('roberta-base-nli-mean-tokens')
+#embedder = SentenceTransformer('roberta-large-nli-mean-tokens')
+#embedder = SentenceTransformer('distilbert-base-nli-mean-tokens')
 
-# Corpus with example sentences
+def save_embedding(file_name,embedding_list):
+    save_file_header = open(file_name.,"w")
 def get_all_sentences(file_name):
     file_header = open(file_name)
 
@@ -17,6 +18,7 @@ def get_all_sentences(file_name):
         line.replace("\n","")
         sentence_list.append(line)
         line = file_header.readline()
+    print(sentence_list)
 corpus = get_all_sentences("manually_selected_clean.txt")
 corpus_embeddings = embedder.encode(corpus)
 
