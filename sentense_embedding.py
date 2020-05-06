@@ -88,7 +88,7 @@ line = unknown_sentenses_file_header.readline()
 
 result_file = "texts_clean2_result.txt"
 result_file_header = open(result_file,"w")
-
+count=0
 while line:
     line = line.replace("\n","")
     line_list = []
@@ -109,6 +109,8 @@ while line:
     for edis in euclidean_dis[0]:
         result_file_header.write(str(edis)+" ")
     result_file_header.write("\n")    
-    break
+    count+=1
+    if count%1000==0:
+        print("finished:"+str(count))
     line = unknown_sentenses_file_header.readline()
     
