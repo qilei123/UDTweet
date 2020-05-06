@@ -109,6 +109,6 @@ while line:
     while edis in euclidean_dis[0]:
         result_file_header.write(str(edis)+" ")
     result_file_header.write("\n")    
-
+    break
     line = unknown_sentenses_file_header.readline()
     
