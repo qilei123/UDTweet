@@ -27,6 +27,7 @@ def get_score_list(score_file,score_type = "consin"):
     scores_list = []
     count=0
     while line:
+        line = line.replace("\n","")
         consin_scores = []
         if count%2==mod_end:
             scores = line.split(" ")
