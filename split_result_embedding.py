@@ -43,6 +43,5 @@ def get_score_list(score_file,score_type = "consin"):
     return scores_list
 
 scores_list = get_score_list("texts_clean2_result_scores.txt")
-print(scores_list)
 
-print(scores_list[3][1])
+print(scores_list[:][0])
