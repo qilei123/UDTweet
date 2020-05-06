@@ -78,7 +78,7 @@ clustering_model4.fit(embeddings_positives4)
 print("The center of positive_tweets_and_positive_web is:")
 print(clustering_model4.cluster_centers_)
 
-unknown_sentenses_file = "text_clean2.txt"
+unknown_sentenses_file = "texts_clean2.txt"
 unknown_sentenses_file_header = open(unknown_sentenses_file)
 line = unknown_sentenses_file_header.readline()
 while line:
