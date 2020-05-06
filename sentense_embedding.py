@@ -95,9 +95,20 @@ while line:
     line_list.append(line)
     embedded_line = embedder.encode(line_list)
     
-    print(cosine_similarity(embedded_line,centers))
-    print(euclidean_distances(embedded_line,centers))
-    print(cosine_distances(embedded_line,centers))
-    time.sleep(1)
+    cosine_sim = cosine_similarity(embedded_line,centers)
+    euclidean_dis = euclidean_distances(embedded_line,centers)
+
+    while feature in embedded_line[0]:
+        result_file_header.write(str(feature)+" ")
+    result_file_header.write("\n")
+
+    while csim in cosine_sim[0]:
+        result_file_header.write(str(csim)+" ")
+    result_file_header.write("\n")
+
+    while edis in euclidean_dis[0]:
+        result_file_header.write(str(edis)+" ")
+    result_file_header.write("\n")    
+
     line = unknown_sentenses_file_header.readline()
     
