@@ -36,6 +36,8 @@ def clean_text(file_dir):
         clean_string = remove_https(clean_string)
         clean_string = remove_atname(clean_string)
         clean_string = remove_a(clean_string)
+        if "   " in clean_string[-3:]:
+            clean_string = clean_string[:-3]
         if not "\n" in clean_string:
             clean_string = clean_string+"\n"
         dst_file_header.write(clean_string)
