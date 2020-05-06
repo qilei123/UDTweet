@@ -98,15 +98,15 @@ while line:
     cosine_sim = cosine_similarity(embedded_line,centers)
     euclidean_dis = euclidean_distances(embedded_line,centers)
 
-    while feature in embedded_line[0]:
+    for feature in embedded_line[0]:
         result_file_header.write(str(feature)+" ")
     result_file_header.write("\n")
 
-    while csim in cosine_sim[0]:
+    for csim in cosine_sim[0]:
         result_file_header.write(str(csim)+" ")
     result_file_header.write("\n")
 
-    while edis in euclidean_dis[0]:
+    for edis in euclidean_dis[0]:
         result_file_header.write(str(edis)+" ")
     result_file_header.write("\n")    
     break
