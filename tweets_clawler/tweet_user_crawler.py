@@ -59,7 +59,7 @@ def main():
 			streamlistener.on_data = my_on_data
 			streamlistener.on_error = my_on_error
 			stream = tweepy.Stream(auth, listener=streamlistener, secure=True)
-			stream.filter(track=kw)
+			#stream.filter(track=kw)
 			#stream.filter(track=kw,follow=us)
 			#stream.filter(track=['notonus'])
 
