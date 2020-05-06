@@ -1,30 +1,39 @@
-import tensorflow as tf
-import tensorflow_hub as hub
-'''
-embed = hub.Module("https://tfhub.dev/google/universal-sentence-encoder/1")
-embeddings = embed([
-    "The quick brown fox jumps over the lazy dog.",
-    "I am a sentence for which I would like to get its embedding"])
+"""
+This is a simple application for sentence embeddings: clustering
 
-print(session.run(embeddings))
-'''
-embed = hub.load("universal_sentence_encoder")
-# Compute a representation for each message, showing various lengths supported.
-word = "Elephant"
-sentence = "I am a sentence for which I would like to get its embedding."
-paragraph = (
-    "Universal Sentence Encoder embeddings also support short paragraphs. "
-    "There is no hard limit on how long the paragraph is. Roughly, the longer "
-    "the more 'diluted' the embedding will be.")
-messages = [word, sentence, paragraph]
-# Reduce logging output.
-tf.logging.set_verbosity(tf.logging.ERROR)
-with tf.Session() as session:
-    session.run([tf.global_variables_initializer(), tf.tables_initializer()])
-    message_embeddings = session.run(embed(messages))
-for i, message_embedding in enumerate(np.array(message_embeddings).tolist()):
-        print("Message: {}".format(messages[i]))
-        print("Embedding size: {}".format(len(message_embedding)))
-        message_embedding_snippet = ", ".join((str(x) for x in        message_embedding[:3]))
-        print("Embedding[{},...]\n".
-                   format(message_embedding_snippet))
+Sentences are mapped to sentence embeddings and then k-mean clustering is applied.
+"""
+from sentence_transformers import SentenceTransformer
+from sklearn.cluster import KMeans
+
+embedder = SentenceTransformer('bert-base-nli-mean-tokens')
+
+# Corpus with example sentences
+corpus = ['A man is eating food.',
+          'A man is eating a piece of bread.',
+          'A man is eating pasta.',
+          'The girl is carrying a baby.',
+          'The baby is carried by the woman',
+          'A man is riding a horse.',
+          'A man is riding a white horse on an enclosed ground.',
+          'A monkey is playing drums.',
+          'Someone in a gorilla costume is playing a set of drums.',
+          'A cheetah is running behind its prey.',
+          'A cheetah chases prey on across a field.'
+          ]
+corpus_embeddings = embedder.encode(corpus)
+
+# Perform kmean clustering
+num_clusters = 5
+clustering_model = KMeans(n_clusters=num_clusters)
+clustering_model.fit(corpus_embeddings)
+cluster_assignment = clustering_model.labels_
+
+clustered_sentences = [[] for i in range(num_clusters)]
+for sentence_id, cluster_id in enumerate(cluster_assignment):
+    clustered_sentences[cluster_id].append(corpus[sentence_id])
+
+for i, cluster in enumerate(clustered_sentences):
+    print("Cluster ", i+1)
+    print(cluster)
+    print("")
