@@ -55,5 +55,7 @@ def get_modelx_score_list(scores_list,x=0):
 import numpy as np
 
 score_list1 = get_modelx_score_list(scores_list,0)
-print(score_list1)
-print(np.argsort(score_list1))
+
+indexes = np.argsort(score_list1)
+
+print(score_list1[indexes[0]])
