@@ -15,7 +15,7 @@ def get_all_sentences(file_name):
     line = file_header.readline()
     sentence_list = []
     while line:
-        line.replace("\n","")
+        line = line.replace("\n","")
         sentence_list.append(line)
         line = file_header.readline()
     print(sentence_list)
