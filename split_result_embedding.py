@@ -37,7 +37,7 @@ def get_score_list(score_file,score_type = "consin"):
 
                 consin_scores.append(float(score))
             scores_list.append(consin_scores)
-        
+        count+=1
         line = score_file_header.readline()
 
     return scores_list
