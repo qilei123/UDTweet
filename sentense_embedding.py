@@ -1,6 +1,7 @@
 from sentence_transformers import SentenceTransformer
 from sklearn.cluster import KMeans
 import time
+import sklearn.metrics.pairwise_distances as distances
 #embedder = SentenceTransformer('bert-base-nli-mean-tokens')
 embedder = SentenceTransformer('bert-large-nli-mean-tokens')
 #embedder = SentenceTransformer('roberta-base-nli-mean-tokens')
@@ -78,14 +79,23 @@ clustering_model4.fit(embeddings_positives4)
 print("The center of positive_tweets_and_positive_web is:")
 print(clustering_model4.cluster_centers_)
 
+centers = [clustering_model1.cluster_centers_[0],clustering_model2.cluster_centers_[0],
+            clustering_model3.cluster_centers_[0],clustering_model4.cluster_centers_[0]]
+
 unknown_sentenses_file = "texts_clean2.txt"
 unknown_sentenses_file_header = open(unknown_sentenses_file)
 line = unknown_sentenses_file_header.readline()
+
+result_file = "texts_clean2_result.txt"
+result_file_header = open(result_file,"w")
+
 while line:
     line = line.replace("\n","")
     line_list = []
     line_list.append(line)
     embedded_line = embedder.encode(line_list)
-    print(embedded_line)
+    
+    print(distances(embedded_line,centers))
     time.sleep(1)
+    line = unknown_sentenses_file_header.readline()
     
