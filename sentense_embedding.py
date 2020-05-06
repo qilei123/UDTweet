@@ -25,36 +25,28 @@ def get_all_sentences(file_name):
         sentence_list.append(line)
         line = file_header.readline()
     return sentence_list
+##################################
+embedding_sentences_file1 = "selected_and_positive_tweets.txt"
 
-embedding_sentences_file = "selected_and_positive_tweets.txt"
+corpus1 = get_all_sentences(embedding_sentences_file1)
 
-corpus = get_all_sentences(embedding_sentences_file)
-
-corpus_embeddings = embedder.encode(corpus)
-
-save_embedding(embedding_sentences_file,corpus_embeddings)
-
-embedding_sentences_file = "texts_clean.txt"
-
-corpus = get_all_sentences(embedding_sentences_file)
-
-corpus_embeddings = embedder.encode(corpus)
-
-save_embedding(embedding_sentences_file,corpus_embeddings)
-
+corpus_embeddings1 = embedder.encode(corpus1)
 '''
+save_embedding(embedding_sentences_file1,corpus_embeddings1)
+###################################
+
+embedding_sentences_file2 = "texts_clean.txt"
+
+corpus2 = get_all_sentences(embedding_sentences_file2)
+
+corpus_embeddings2 = embedder.encode(corpus2)
+
+save_embedding(embedding_sentences_file2,corpus_embeddings2)
+'''
+
 # Perform kmean clustering
 num_clusters = 1
 clustering_model = KMeans(n_clusters=num_clusters)
-clustering_model.fit(corpus_embeddings)
-cluster_assignment = clustering_model.labels_
-
-clustered_sentences = [[] for i in range(num_clusters)]
-for sentence_id, cluster_id in enumerate(cluster_assignment):
-    clustered_sentences[cluster_id].append(corpus[sentence_id])
-
-for i, cluster in enumerate(clustered_sentences):
-    print("Cluster ", i+1)
-    print(cluster)
-    print("")
-'''
+clustering_model.fit(corpus_embeddings1)
+print("cluster_center:")
+print(clustering_model.cluster_centers_)
