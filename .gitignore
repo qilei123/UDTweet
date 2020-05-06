@@ -2,3 +2,4 @@ records
 universal_sentence_encoder
 1.tar.gz
 *.zip
+texts_clean2_result_embeddings.txt
