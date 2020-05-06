@@ -58,4 +58,4 @@ score_list1 = get_modelx_score_list(scores_list,0)
 
 indexes = np.argsort(score_list1)
 
-print(score_list1[indexes[0]])
+print(score_list1[indexes[len(indexes)-1]])
