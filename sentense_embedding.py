@@ -33,6 +33,7 @@ corpus1 = get_all_sentences(embedding_sentences_file1)
 corpus_embeddings1 = embedder.encode(corpus1)
 '''
 save_embedding(embedding_sentences_file1,corpus_embeddings1)
+'''
 ###################################
 
 embedding_sentences_file2 = "texts_clean.txt"
@@ -40,7 +41,7 @@ embedding_sentences_file2 = "texts_clean.txt"
 corpus2 = get_all_sentences(embedding_sentences_file2)
 
 corpus_embeddings2 = embedder.encode(corpus2)
-
+'''
 save_embedding(embedding_sentences_file2,corpus_embeddings2)
 '''
 
@@ -48,5 +49,5 @@ save_embedding(embedding_sentences_file2,corpus_embeddings2)
 num_clusters = 1
 clustering_model = KMeans(n_clusters=num_clusters)
 clustering_model.fit(corpus_embeddings1)
-print("cluster_center:")
+print("cluster_center is:")
 print(clustering_model.cluster_centers_)
