@@ -30,11 +30,13 @@ def readLinebyLine(file_name,save_text):
         if got_it:
             save_text.write(target_text+"\n")
         else:
-            save_text.write(json_data["text"]+"\n")
+            target_text,got_it = recursive_json_key(json_data,"text")
+            if got_it:
+                save_text.write(target_text+"\n")
         line = file_header.readline()
 
-record_files = glob.glob("records/incoming*")
-save_text = open("texts.txt","w")
+record_files = glob.glob("tweets_clawler/negatives/incoming*")
+save_text = open("texts_negative.txt","w")
 
 for record_file in record_files:
     readLinebyLine(record_file,save_text)

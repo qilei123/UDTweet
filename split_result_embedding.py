@@ -54,7 +54,7 @@ def get_modelx_score_list(scores_list,x=0):
 
 import numpy as np
 
-score_list1 = get_modelx_score_list(scores_list,0)
+score_list1 = get_modelx_score_list(scores_list,3)
 
 indexes1 = np.argsort(score_list1)
 
@@ -68,7 +68,7 @@ while line:
     text_list.append(line)
     line = text_file_header.readline()
 
-ranked_text_file_header = open("texts_clean2_ranked.txt","w")
+ranked_text_file_header = open("texts_clean2_ranked3.txt","w")
 length = len(indexes1)
 for i in range(length):
     ranked_text_file_header.write(text_list[indexes1[length-1-i]])

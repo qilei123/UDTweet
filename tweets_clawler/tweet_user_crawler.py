@@ -20,14 +20,14 @@ def my_on_data(data):
 	global tempData
 	global totalTweets
 	tempData.append(data.strip() + "\n")
-	stdout.write("negatives/\r%d-%d" % (totalTweets,len(tempData)))
+	stdout.write("\r%d-%d" % (totalTweets,len(tempData)))
 	stdout.flush()
 	#if len(tempData)%10==0 and len(tempData)>0:
 	#	print(tempData)
 	if len(tempData) == 10000:
 		totalTweets=totalTweets+10000
 		fileIndex=totalTweets/100000
-		f = open("incoming-"+str(fileIndex), 'a')
+		f = open("negatives/incoming-"+str(fileIndex), 'a')
 		content = ''.join(tempData)
 		f.write(content)
 		f.close()

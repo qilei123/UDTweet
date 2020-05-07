@@ -46,16 +46,19 @@ def clean_text(file_dir):
     
 #clean_text("manually_selected.txt")
 
-#clean_text("texts.txt")
-
+#clean_text("texts_negative.txt")
+def containenglish(str0):
+    import re
+    return bool(re.search('[a-z]', str0))
 def clean2(file_name):
     file_header = open(file_name)
     dst_header = open(file_name.replace(".txt","2.txt"),"w")
     line = file_header.readline()
 
     while line:
-        if not (line=="\n" or line=="  \n"):
+        #if not (line=="\n" or line=="  \n" or line==" \n"):
+        if containenglish(line) and not ("COVID" in line or "Coronavirus" in line or "coronavirus" in line):
             dst_header.write(line)
         line = file_header.readline()
 
-clean2("texts_clean.txt")
+clean2("texts_negative_clean.txt")
